@@ -41,9 +41,6 @@ goto begin
   set key=hkey_local_machine\software\microsoft\wcmsvc\wifinetworkmanager
   reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn setowner -ownr n:administrators %logs%
   reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn ace -ace "n:administrators;p:full" %logs%
-  set key=hkey_local_machine\software\microsoft\windows\currentversion\datetime\servers
-  reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn setowner -ownr n:administrators %logs%
-  reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn ace -ace "n:administrators;p:full" %logs%
   set key=hkey_local_machine\software\microsoft\windows\currentversion\windowsupdate\auto update
   reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn setowner -ownr n:administrators %logs%
   reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn ace -ace "n:administrators;p:full" %logs%
@@ -69,12 +66,6 @@ goto begin
   reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn setowner -ownr n:administrators %logs%
   reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn ace -ace "n:administrators;p:full" %logs%
   set key=hkey_local_machine\system\currentcontrolset\control\wmi\autologger\autoLogger-diagtrack-listener
-  reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn setowner -ownr n:administrators %logs%
-  reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn ace -ace "n:administrators;p:full" %logs%
-  set key=hkey_local_machine\system\currentcontrolset\services\w32time\parameters
-  reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn setowner -ownr n:administrators %logs%
-  reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn ace -ace "n:administrators;p:full" %logs%
-  set key=hkey_local_machine\system\currentcontrolset\services\w32time\timeproviders\ntpclient
   reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn setowner -ownr n:administrators %logs%
   reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn ace -ace "n:administrators;p:full" %logs%
 
@@ -235,25 +226,46 @@ goto begin
   sc query diagtrack >nul 2>&1 && sc delete diagtrack %logs%
   echo. %log%
 
-  echo * sync time to pool.ntp.org ... %log%
-  sc query w32time 2>&1 | findstr /i running >nul 2>&1 && net stop w32time %logs%
-  set key=hkey_local_machine\software\microsoft\windows\currentversion\datetime\servers
-  reg query "%key%" >nul 2>&1 && reg delete "%key%" /f %logs%
-  set key=hkey_local_machine\system\currentcontrolset\services\w32time\timeproviders\ntpclient
-  reg query "%key%" >nul 2>&1 && reg delete "%key%" /f /v specialpolltimeremaining %logs%
-  w32tm /config /syncfromflags:manual /manualpeerlist:"0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org" %logs%
-  set key=hkey_local_machine\software\microsoft\windows\currentversion\datetime\servers
-  reg add "%key%" /f /t reg_sz /d 0 %logs%
-  reg add "%key%" /f /t reg_sz /v 0 /d 0.pool.ntp.org %logs%
-  reg add "%key%" /f /t reg_sz /v 1 /d 1.pool.ntp.org %logs%
-  reg add "%key%" /f /t reg_sz /v 2 /d 2.pool.ntp.org %logs%
-  reg add "%key%" /f /t reg_sz /v 3 /d 3.pool.ntp.org %logs%
-  set key=hkey_local_machine\system\currentcontrolset\services\w32time\timeproviders\ntpclient
-  reg add "%key%" /f /t reg_dword /v specialpollinterval /d 14400 %logs%
-  sc config w32time start= auto %logs%
-  net start w32time %logs%
-  w32tm /resync %logs%
-  echo. %log%
+  if exist C:\aegis-ignore-ntp.txt (
+    REM Do nothing
+    REM
+    REM Don't change NTP setting if C:\aegis-ignore-ntp.txt exists
+    REM Allows user to prevent aegis from trashing their
+    REM custom NTP settings
+  ) else (
+    echo * sync time to pool.ntp.org ... %log%
+
+    set key=hkey_local_machine\system\currentcontrolset\services\w32time\parameters
+    reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn setowner -ownr n:administrators %logs%
+    reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn ace -ace "n:administrators;p:full" %logs%
+
+    set key=hkey_local_machine\software\microsoft\windows\currentversion\datetime\servers
+    reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn setowner -ownr n:administrators %logs%
+    reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn ace -ace "n:administrators;p:full" %logs%
+
+    set key=hkey_local_machine\system\currentcontrolset\services\w32time\timeproviders\ntpclient
+    reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn setowner -ownr n:administrators %logs%
+    reg query "%key%" >nul 2>&1 && "%~dp0%setacl%" -on "%key%" -ot reg -actn ace -ace "n:administrators;p:full" %logs%
+
+    sc query w32time 2>&1 | findstr /i running >nul 2>&1 && net stop w32time %logs%
+    set key=hkey_local_machine\software\microsoft\windows\currentversion\datetime\servers
+    reg query "%key%" >nul 2>&1 && reg delete "%key%" /f %logs%
+    set key=hkey_local_machine\system\currentcontrolset\services\w32time\timeproviders\ntpclient
+    reg query "%key%" >nul 2>&1 && reg delete "%key%" /f /v specialpolltimeremaining %logs%
+    w32tm /config /syncfromflags:manual /manualpeerlist:"0.pool.ntp.org 1.pool.ntp.org 2.pool.ntp.org 3.pool.ntp.org" %logs%
+    set key=hkey_local_machine\software\microsoft\windows\currentversion\datetime\servers
+    reg add "%key%" /f /t reg_sz /d 0 %logs%
+    reg add "%key%" /f /t reg_sz /v 0 /d 0.pool.ntp.org %logs%
+    reg add "%key%" /f /t reg_sz /v 1 /d 1.pool.ntp.org %logs%
+    reg add "%key%" /f /t reg_sz /v 2 /d 2.pool.ntp.org %logs%
+    reg add "%key%" /f /t reg_sz /v 3 /d 3.pool.ntp.org %logs%
+    set key=hkey_local_machine\system\currentcontrolset\services\w32time\timeproviders\ntpclient
+    reg add "%key%" /f /t reg_dword /v specialpollinterval /d 14400 %logs%
+    sc config w32time start= auto %logs%
+    net start w32time %logs%
+    w32tm /resync %logs%
+    echo. %log%
+  )
 
   echo * uninstall ^& hide updates (this may take a while, be patient) ... %log%
   powershell -executionpolicy bypass -file "%~dp0uninstall.ps1" %log%
