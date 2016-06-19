@@ -1,4 +1,10 @@
 @echo off
+
+REM Don't change NTP setting if C:\aegis-ignore-ntp.txt exists
+REM Allows user to prevent aegis from trashing their
+REM custom NTP settings
+if exist C:\aegis-ignore-ntp.txt exit
+
 set log=^> ^%~dp0_ ^&^& type ^%~dp0_ ^&^& type ^%~dp0_ ^>^>^%~dpn0.log 2^>^&1
 set logs=^>^>^%~dpn0.log 2^>^&1
 
