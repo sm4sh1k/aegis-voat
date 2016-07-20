@@ -63,7 +63,7 @@ KB update description
 - [3083325](https://support.microsoft.com/en-us/kb/3083325) update for windows update client for windows 8.1 and windows server 2012 r2 september 2015
 - [3083710](https://support.microsoft.com/en-us/kb/3083710) update for windows update client for windows 7 and windows server 2008 r2 october 2015
 - [3083711](https://support.microsoft.com/en-us/kb/3083711) update for windows update client for windows 8.1 and windows server 2012 r2 october 2015
-- [3086255](https://support.microsoft.com/en-us/kb/3086255) september 8, 2015, security update for the graphics component in windows (breaks safedisc)
+- [3086255](https://support.microsoft.com/en-us/kb/3086255) september 8, 2015, security update for the graphics component in windows (the update breaks safedisc)
 - [3088195](https://support.microsoft.com/en-us/kb/3088195) october 13, 2015, security update for windows kernel (reported to contain a keylogger)
 - [3090045](https://support.microsoft.com/en-us/kb/3090045) windows update for reserved devices in windows 8.1 or windows 7 sp1 (windows 10 upgrade elements)
 - [3093983](https://support.microsoft.com/en-us/kb/3093983) security update for internet explorer: october 13, 2015 (ie spying elements)
