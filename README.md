@@ -18,7 +18,7 @@ Liability:
 ====
 All code except sed and setacl is provided as open source so you can look and see for yourself what it does. It has been thoroughly tested on my own systems and scanned on VirusTotal and to the best of my knowledge it does not contain any harmful or malicious elements. However I assume no liability for any problems so use it at your own risk.
 
-    License:
+License:
 ====
 There is no official license - you are welcome to modify and share my code and you do not have to give me credit. I do appreciate any feedback and I will give you credit if I use your ideas. This script is the product of a collaborate effort and does not belong to any one person.
 
