@@ -4,7 +4,16 @@ Blocks all known Microsoft spying and Windows 10 upgrade elements
 
 Details:
 ====
-Block 197 bad hosts, change windows update to check/notify (do not download/install), disable automatic delivery of internet explorer via windows update, disable ceip/gwx/skydrive(aka onedrive)/spynet/telemetry/wifisense, disable remote registry, disable 31 scheduled tasks, disable windows 10 download directory, remove diagtrack, sync time to ntp.org, hide/uninstall kb updates (see below).
+* Block 197 bad hosts
+* Change windows update to check/notify (do not download/install)
+* Disable automatic delivery of internet explorer via windows update
+* Disable ceip/gwx/skydrive(aka onedrive)/spynet/telemetry/wifisens
+* Disable remote registry
+* Disable 31 scheduled tasks
+* Disable windows 10 download directory
+* Remove diagtrack
+* Sync's time to ntp.org
+* Hide/uninstall kb updates (see below).
 
 Instructions:
 ====
