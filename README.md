@@ -8,7 +8,20 @@ Block 197 bad hosts, change windows update to check/notify (do not download/inst
 
 Instructions:
 ====
-Download, unzip, right click on aegis.cmd, click "run as administrator", follow on-screen instructions.
+**Prep**: Download, unzip  
+
+1. Download and install kb3050265 (Note: For W8 it's kb3050267):
+  * 32-bit: https://download.microsoft.com/download/E/D/0/ED0AEBFC-A0DB-487E-8A55-F1AD952BBC29/Windows6.1-KB3050265-x86.msu
+  * 64-bit: https://download.microsoft.com/download/E/9/7/E97EFDD9-053D-4C5B-96F4-F4928818C9A4/Windows6.1-KB3050265-x64.msu
+2. **Reboot**
+3. Run 'repairwindowsupdate.cmd' (right click, run as admin)
+4. Check for updates
+5. Run Aegis (right click on aegis.cmd, click "run as administrator", follow on-screen instructions)  
+6. Install updates
+7. Reboot
+8. Repeat 4-7
+
+
 
 WARNING: Internet Explorer:
 ====
