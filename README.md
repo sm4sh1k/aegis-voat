@@ -58,6 +58,7 @@ KB update description
 - [2976978](https://support.microsoft.com/en-us/kb/2976978) update for windows 8.1 and windows 8
 - [2977759](https://support.microsoft.com/en-us/kb/2977759) update for windows 7 rtm
 - [2990214](https://support.microsoft.com/en-us/kb/2990214) update that enables you to upgrade from windows 7 to a later version of windows
+- [2966583](https://support.microsoft.com/en-us/kb/2966583) Improvements for the System Update Readiness Tool
 - [3012973](https://support.microsoft.com/en-us/kb/3012973) upgrade to windows 10
 - [3014460](https://support.microsoft.com/en-us/kb/3014460) update for windows insider preview / upgrade to windows 10
 - [3015249](https://support.microsoft.com/en-us/kb/3015249) update that adds telemetry points to consent.exe in Windows 8.1 and Windows 7
@@ -102,6 +103,7 @@ KB update description
 - [3146449](https://support.microsoft.com/en-us/kb/3146449) updated internet explorer 11 capabilities to upgrade windows 8.1 and windows 7
 - [3150513](https://support.microsoft.com/en-us/kb/3150513) may 2016 compatibility update for windows
 - [3173040](https://support.microsoft.com/en-us/kb/3173040)	Windows 8.1 and Windows 7 SP1 end of free upgrade offer notification
+
 
 - Thanks to @alexzerg11, @allockse, @AxiomBreak, @elixxx, @erskine, @eSh, @GGLapkizzz, @ilikeskittles, @liquidinsects, @Magoo204, @Mixplate, @mythias, @PaulDG, @pstein, @RypeDub420, @spexdi, @tor11, @Umrtvovacz, @qzxq, @thequestion, @tor11, @tr3bg0d, @Umrtvovacz, @Voluptuous_Panda, and @Zaphain.
 
