@@ -24,7 +24,7 @@ Instructions:
   * 64-bit: https://download.microsoft.com/download/E/9/7/E97EFDD9-053D-4C5B-96F4-F4928818C9A4/Windows6.1-KB3050265-x64.msu
 2. **Reboot**
 3. Run 'repairwindowsupdate.cmd' (right click, run as admin)
-4. Check for updates
+4. Check for updates (On a new install, this can take several hours)
 5. Run Aegis (right click on aegis.cmd, click "run as administrator", follow on-screen instructions)  
 6. Install updates
 7. Reboot
