@@ -81,14 +81,14 @@ goto begin
   echo. %log%
 
   echo * disable automated delivery of internet explorer ... %log%
-  start "title" /b /wait "%~dp0disable7.cmd" . /B %logs%
-  echo. %logs%
-  start "title" /b /wait "%~dp0disable8.cmd" . /B %logs%
-  echo. %logs%
-  start "title" /b /wait "%~dp0disable9.cmd" . /B %logs%
-  echo. %logs%
-  start "title" /b /wait "%~dp0disable10.cmd" . /B %logs%
-  echo. %logs%
+  REM start "title" /b /wait "%~dp0disable7.cmd" . /B %logs%
+  REM echo. %logs%
+  REM start "title" /b /wait "%~dp0disable8.cmd" . /B %logs%
+  REM echo. %logs%
+  REM start "title" /b /wait "%~dp0disable9.cmd" . /B %logs%
+  REM echo. %logs%
+  REM start "title" /b /wait "%~dp0disable10.cmd" . /B %logs%
+  REM echo. %logs%
   start "title" /b /wait "%~dp0disable11.cmd" . /B %logs%
   echo. %log%
 
@@ -211,9 +211,9 @@ goto begin
   echo * disable windows 10 download ... %log%
   if exist "%systemdrive%\$windows.~bt" "%~dp0%setacl%" -on "%systemdrive%\$windows.~bt" -ot file -actn setprot -op dacl:np;sacl:nc -rec cont_obj -actn setowner -ownr n:administrators %logs%
   if exist "%systemdrive%\$windows.~bt" rmdir /q /s "%systemdrive%\$windows.~bt" %logs%
-  mkdir "%systemdrive%\$windows.~bt" %logs%
-  attrib +h "%systemdrive%\$windows.~bt" %logs%
-  "%~dp0%setacl%" -on "%systemdrive%\$windows.~bt" -ot file -actn setprot -op dacl:p_nc;sacl:p_nc -rec cont_obj -actn setowner -ownr n:administrators %logs%
+  REM mkdir "%systemdrive%\$windows.~bt" %logs%
+  REM attrib +h "%systemdrive%\$windows.~bt" %logs%
+  REM "%~dp0%setacl%" -on "%systemdrive%\$windows.~bt" -ot file -actn setprot -op dacl:p_nc;sacl:p_nc -rec cont_obj -actn setowner -ownr n:administrators %logs%
   echo. %log%
 
   echo * disable windows 10 upgrade ... %log%
@@ -226,13 +226,7 @@ goto begin
   sc query diagtrack >nul 2>&1 && sc delete diagtrack %logs%
   echo. %log%
 
-  if exist C:\aegis-ignore-ntp.txt (
-    REM Do nothing
-    REM
-    REM Don't change NTP setting if C:\aegis-ignore-ntp.txt exists
-    REM Allows user to prevent aegis from trashing their
-    REM custom NTP settings
-  ) else (
+  if exist C:\aegis-change-ntp.txt (
     echo * sync time to pool.ntp.org ... %log%
 
     set key=hkey_local_machine\system\currentcontrolset\services\w32time\parameters
