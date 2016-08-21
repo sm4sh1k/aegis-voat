@@ -198,4 +198,3 @@ watson.telemetry.microsoft.com.nsatc.net
 wes.df.telemetry.microsoft.com
 win10.ipv6.microsoft.com.nsatc.net
 www.modern.ie
-#www.msftncsi.com
